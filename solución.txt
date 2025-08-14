@@ -1,0 +1,150 @@
+package taller3Java;
+import java.util.Scanner;
+
+public class TallerJava3 {
+    public static void ejercicio1(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el valor total de la compra: ");
+        double totalCompra = scanner.nextDouble();
+
+        System.out.print("Ingrese la cantidad de productos comprados: ");
+        int cantidadProductos = scanner.nextInt();
+        scanner.nextLine(); // Limpiar el buffer
+
+        double totalAPagar = 1;
+
+        System.out.print("¿Tiene membresía? (sí/no): ");
+        String tieneMembresia = scanner.nextLine().trim().toLowerCase();
+
+
+        if (tieneMembresia.equals("si") || tieneMembresia.equals("sí")) {
+            totalAPagar = totalCompra * 0.90;
+        }
+
+        if (cantidadProductos > 10) {
+            totalAPagar = totalCompra * 0.85;
+        }
+
+
+        System.out.println("Total a pagar: $" + totalAPagar);
+
+        scanner.close();
+    }
+
+    public static void ejercicio2(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el tipo de animal (perro, gato, ave, otro): ");
+        String tipoAnimal = scanner.nextLine().trim().toLowerCase();
+
+        System.out.print("Ingrese la edad de la mascota (años): ");
+        int edad = scanner.nextInt();
+
+        String veterinarioAsignado = "";
+
+        switch (tipoAnimal) {
+            case "perro":
+                veterinarioAsignado = "Dr. Especialista en perros";
+                break;
+            case "gato":
+                veterinarioAsignado = "Dr. Especialista en gatos";
+                break;
+            case "ave":
+                veterinarioAsignado = "Dr. Especialista en aves";
+                break;
+            default:
+                veterinarioAsignado = "Veterinaria general";
+                break;
+        }
+
+        boolean necesitaVacunacion = (tipoAnimal.equals("perro") || tipoAnimal.equals("gato")) && edad > 5;
+
+        System.out.println("Veterinario asignado: " + veterinarioAsignado);
+        if (necesitaVacunacion) {
+            System.out.println("Necesita vacunación adicional.");
+        } else {
+            System.out.println("No necesita vacunación adicional por edad.");
+        }
+
+        scanner.close();
+
+    }
+
+    public static void ejercicio3(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese el tipo de vehículo (auto, moto, bicicleta): ");
+        String tipoVehiculo = scanner.nextLine().trim().toLowerCase();
+
+
+        System.out.print("Ingrese  hora de llegada ( 1-24): ");
+        int horaLlegada = scanner.nextInt();
+
+        double costoBase;
+
+
+        switch (tipoVehiculo) {
+            case "auto":
+                costoBase = 5000;
+                break;
+            case "moto":
+                costoBase = 3000;
+                break;
+            case "bicicleta":
+                costoBase = 1000;
+                break;
+            default:
+                System.out.println("Ingrese un vehiculo válido");
+                scanner.close();
+                return;
+        }
+
+        if (horaLlegada >= 20) {
+            costoBase = costoBase * 1.20;
+        }
+
+        System.out.println("Total del parqueo: $" + costoBase);
+
+        scanner.close();
+    }
+
+    public static void ejercicio4(){
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese el tipo de prenda (camisa, pantalon, chaqueta): ");
+        String tipoPrenda = scanner.nextLine().trim().toLowerCase();
+        
+        System.out.print("Ingrese cantidad de prendas: ");
+        int cantidad = scanner.nextInt();
+
+        double precioUnitario;
+        
+        switch (tipoPrenda) {
+            case "camisa":
+                precioUnitario = 60000;
+                break;
+            case "pantalon":
+                precioUnitario = 100000;
+                break;
+            case "chaqueta":
+                precioUnitario = 120000;
+                break;
+            default:
+                System.out.println("Ingrese una prenda válida");
+                scanner.close();
+                return;
+        }
+
+        double total = precioUnitario * cantidad;
+        
+        if (cantidad > 5) {
+            total = total * 0.85; 
+        }
+        
+        System.out.println("Total a pagar: $" + total);
+
+        scanner.close();
+    }
+
+}
